@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
+import Products from "./components/Products/Products";
 import "./App.css";
 
 function App() {
-  const [ProductsData, setProductsData] = useState<
+  const [productsData, setProductsData] = useState<
     {
-      id: string;
+      id: number;
       title: string;
       price: number;
       description: string;
@@ -15,12 +16,26 @@ function App() {
     }[]
   >([]);
 
+  useEffect(() => {
+    const url = "https://fakestoreapi.com/products";
+    const productsDataFetch = async () => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => setProductsData(data))
+        .catch((error) => console.log(error));
+    };
+
+    productsDataFetch();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
         <Navbar />
       </header>
-      <main></main>
+      <main>
+        <Products productsData={productsData} />
+      </main>
     </div>
   );
 }

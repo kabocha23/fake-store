@@ -1,0 +1,11 @@
+.product-container {
+    display: flex;
+    flex-flow: column;
+    width: 20rem;
+    height: auto;
+}
+
+#product-image {
+    object-fit:contain;
+    height: 15rem;
+}

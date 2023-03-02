@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar/Navbar";
 import Products from "./components/Products/Products";
+import Footer from "./components/Footer/Footer";
 import "./App.css";
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
     const productsDataFetch = async () => {
-      fetch(url)
+      await fetch(url)
         .then((res) => res.json())
         .then((data) => setProductsData(data))
         .catch((error) => console.log(error));
@@ -36,6 +37,7 @@ function App() {
       <main>
         <Products productsData={productsData} />
       </main>
+      <Footer />
     </div>
   );
 }

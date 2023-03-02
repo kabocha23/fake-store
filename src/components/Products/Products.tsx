@@ -1,4 +1,5 @@
 import { FC, useEffect } from "react";
+import Product from "../Product/Product";
 import "./Products.css";
 
 interface ProductsProps {
@@ -14,22 +15,20 @@ interface ProductsProps {
 }
 
 const Products: FC<ProductsProps> = ({ productsData }) => {
-  useEffect(() => {
-    console.log(productsData);
-  }, []);
   return (
     <div className="products-container">
-      <header>This is the Products header</header>
-      <main>
-        {productsData.map((product) => {
-          return (
-            <div key={product.id}>
-              <h1>{product.title}</h1>
-              <h2></h2>
-            </div>
-          );
-        })}
-      </main>
+      {productsData.map((productData) => (
+        <Product
+          key={`key-${productData.id}`}
+          prodId={productData.id}
+          title={productData.title}
+          price={productData.price}
+          description={productData.description}
+          category={productData.category}
+          image={productData.image}
+          rating={productData.rating}
+        />
+      ))}
     </div>
   );
 };

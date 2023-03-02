@@ -1,10 +1,13 @@
+import { FC } from "react";
 import "./Navbar.css";
 
-const Navbar = () => {
+const Navbar: FC = () => {
   return (
     <div className="navbar-container">
-      <header>This is the Navbar header</header>
-      <main></main>
+      <p>
+        <a href="">Sign in</a> or <a href="">register</a>
+      </p>
+      <a>cart placeholder</a>
     </div>
   );
 };

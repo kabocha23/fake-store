@@ -16,6 +16,7 @@ function App() {
       rating: { rate: number; count: number };
     }[]
   >([]);
+  const [categoryFilter, setCategoryFilter] = useState<string>("all");
 
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
@@ -25,9 +26,14 @@ function App() {
         .then((data) => setProductsData(data))
         .catch((error) => console.log(error));
     };
-
+    console.log(productsData);
     productsDataFetch();
   }, []);
+
+  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+    if (e) e.preventDefault();
+    setCategoryFilter(e.target.value);
+  };
 
   return (
     <div className="App">
@@ -35,7 +41,12 @@ function App() {
         <Navbar />
       </header>
       <main>
-        <Products productsData={productsData} />
+        <Products
+          productsData={productsData}
+          categoryFilter={categoryFilter}
+          setCategoryFilter={setCategoryFilter}
+          handleSelect={handleSelect}
+        />
       </main>
       <Footer />
     </div>

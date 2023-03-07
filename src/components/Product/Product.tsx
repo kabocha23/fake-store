@@ -12,17 +12,15 @@ interface ProductProps {
 }
 
 const Product: FC<ProductProps> = ({
-  prodId,
   title,
   price,
   description,
-  category,
   image,
   rating,
 }) => {
   return (
     <div className="product-container">
-      <img src={image} id="product-image"></img>
+      <img src={image} alt={title} className="product-image"></img>
       <h1 id="product-title">{title}</h1>
       <h2 id="product-price">${price}</h2>
       <h2 id="product-rating">{`${rating.rate} stars ${rating.count} reviews`}</h2>

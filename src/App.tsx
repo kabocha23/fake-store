@@ -16,7 +16,8 @@ function App() {
       rating: { rate: number; count: number };
     }[]
   >([]);
-  const [categoryFilter, setCategoryFilter] = useState<string>("all");
+  const [categoryFilter, setCategoryFilter] =
+    useState<string>("Select Category");
 
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
@@ -26,7 +27,6 @@ function App() {
         .then((data) => setProductsData(data))
         .catch((error) => console.log(error));
     };
-    console.log(productsData);
     productsDataFetch();
   }, []);
 

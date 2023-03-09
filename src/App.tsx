@@ -19,7 +19,6 @@ function App() {
   const [categoryFilter, setCategoryFilter] =
     useState<string>("Select Category");
   const [sortBy, setSortBy] = useState<string>("none");
-  const [sortedProductsData, setSortedProductsData] = useState<{}[]>([]);
 
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
@@ -32,7 +31,7 @@ function App() {
     productsDataFetch();
   }, []);
 
-  const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+  const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     if (e) e.preventDefault();
     setCategoryFilter(e.target.value);
   };
@@ -50,16 +49,20 @@ function App() {
     }[]
   ) => {
     if (sortParam === "price low to high") {
-      return productsArr.sort((a, b) => (a.price < b.price ? -1 : 1));
+      setProductsData(productsArr.slice().sort((a, b) => a.price - b.price));
     } else if (sortParam === "price high to low") {
-      return productsArr.sort((a, b) => (a.price > b.price ? -1 : 1));
+      setProductsData(productsArr.slice().sort((a, b) => b.price - a.price));
     } else if (sortParam === "rating") {
-      return productsArr.sort((a, b) =>
-        a.rating.rate > b.rating.rate ? -1 : 1
+      setProductsData(
+        productsArr
+          .slice()
+          .sort((a, b) => (a.rating.rate > b.rating.rate ? -1 : 1))
       );
     } else if (sortParam === "reviews") {
-      return productsArr.sort((a, b) =>
-        a.rating.count > b.rating.count ? -1 : 1
+      setProductsData(
+        productsArr
+          .slice()
+          .sort((a, b) => (a.rating.count > b.rating.count ? -1 : 1))
       );
     }
   };
@@ -74,11 +77,9 @@ function App() {
           productsData={productsData}
           categoryFilter={categoryFilter}
           setCategoryFilter={setCategoryFilter}
-          handleSelect={handleSelect}
+          handleCategory={handleCategory}
           sortBy={sortBy}
           setSortBy={setSortBy}
-          sortedProductsData={sortedProductsData}
-          setSortedProductsData={setSortedProductsData}
           handleSort={handleSort}
         />
       </main>

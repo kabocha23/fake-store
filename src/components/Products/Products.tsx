@@ -14,11 +14,10 @@ interface ProductsProps {
   }[];
   categoryFilter: string;
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
-  handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  handleResetCategory: React.MouseEventHandler<HTMLButtonElement> | undefined;
   sortBy: string;
   setSortBy: React.Dispatch<React.SetStateAction<string>>;
-  sortedProductsData: {}[];
-  setSortedProductsData: React.Dispatch<React.SetStateAction<{}[]>>;
   handleSort: (
     sortParam: string,
     productsArr: {
@@ -28,36 +27,19 @@ interface ProductsProps {
       description: string;
       category: string;
       image: string;
-      rating: {
-        rate: number;
-        count: number;
-      };
+      rating: { rate: number; count: number };
     }[]
-  ) =>
-    | {
-        id: number;
-        title: string;
-        price: number;
-        description: string;
-        category: string;
-        image: string;
-        rating: {
-          rate: number;
-          count: number;
-        };
-      }[]
-    | undefined;
+  ) => void;
 }
 
 const Products: FC<ProductsProps> = ({
   productsData,
   categoryFilter,
   setCategoryFilter,
-  handleSelect,
+  handleCategory,
+  handleResetCategory,
   sortBy,
   setSortBy,
-  sortedProductsData,
-  setSortedProductsData,
   handleSort,
 }) => {
   return (
@@ -67,15 +49,32 @@ const Products: FC<ProductsProps> = ({
 
         <select
           name="categorySelect"
-          defaultValue="Select Category"
+          value={categoryFilter}
           id="categorySelector"
-          onChange={(e) => handleSelect(e)}
+          onChange={(e) => handleCategory(e)}
         >
           <option value="Select Category">Select Category</option>
           <option value="men's clothing">Men's Clothing</option>
           <option value="women's clothing">Women's Clothing</option>
           <option value="electronics">Electronics</option>
           <option value="jewelery">Jewelry</option>
+        </select>
+        <button onClick={handleResetCategory}>Reset</button>
+      </div>
+      <div className="products-sort">
+        <label htmlFor="sortSelect">Sort by: </label>
+
+        <select
+          name="sortSelect"
+          value={sortBy}
+          id="sortSelect"
+          onChange={(e) => handleSort(e.target.value, productsData)}
+        >
+          <option value="Featured">Featured</option>
+          <option value="price low to high">Price: low to high</option>
+          <option value="price high to low">Price: high to low</option>
+          <option value="rating">Rating</option>
+          <option value="reviews">Reviews</option>
         </select>
       </div>
       <div className="products-list">

@@ -18,6 +18,8 @@ function App() {
   >([]);
   const [categoryFilter, setCategoryFilter] =
     useState<string>("Select Category");
+  const [sortBy, setSortBy] = useState<string>("none");
+  const [sortedProductsData, setSortedProductsData] = useState<{}[]>([]);
 
   useEffect(() => {
     const url = "https://fakestoreapi.com/products";
@@ -35,6 +37,33 @@ function App() {
     setCategoryFilter(e.target.value);
   };
 
+  const handleSort = (
+    sortParam: string,
+    productsArr: {
+      id: number;
+      title: string;
+      price: number;
+      description: string;
+      category: string;
+      image: string;
+      rating: { rate: number; count: number };
+    }[]
+  ) => {
+    if (sortParam === "price low to high") {
+      return productsArr.sort((a, b) => (a.price < b.price ? -1 : 1));
+    } else if (sortParam === "price high to low") {
+      return productsArr.sort((a, b) => (a.price > b.price ? -1 : 1));
+    } else if (sortParam === "rating") {
+      return productsArr.sort((a, b) =>
+        a.rating.rate > b.rating.rate ? -1 : 1
+      );
+    } else if (sortParam === "reviews") {
+      return productsArr.sort((a, b) =>
+        a.rating.count > b.rating.count ? -1 : 1
+      );
+    }
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -46,6 +75,11 @@ function App() {
           categoryFilter={categoryFilter}
           setCategoryFilter={setCategoryFilter}
           handleSelect={handleSelect}
+          sortBy={sortBy}
+          setSortBy={setSortBy}
+          sortedProductsData={sortedProductsData}
+          setSortedProductsData={setSortedProductsData}
+          handleSort={handleSort}
         />
       </main>
       <Footer />

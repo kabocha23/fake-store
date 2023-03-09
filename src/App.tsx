@@ -36,6 +36,10 @@ function App() {
     setCategoryFilter(e.target.value);
   };
 
+  const handleResetCategory = () => {
+    setCategoryFilter("Select Category");
+  };
+
   const handleSort = (
     sortParam: string,
     productsArr: {
@@ -48,21 +52,19 @@ function App() {
       rating: { rate: number; count: number };
     }[]
   ) => {
-    if (sortParam === "price low to high") {
+    if (sortParam === "Featured") {
+      setProductsData(productsArr.slice().sort((a, b) => a.id - b.id));
+    } else if (sortParam === "price low to high") {
       setProductsData(productsArr.slice().sort((a, b) => a.price - b.price));
     } else if (sortParam === "price high to low") {
       setProductsData(productsArr.slice().sort((a, b) => b.price - a.price));
     } else if (sortParam === "rating") {
       setProductsData(
-        productsArr
-          .slice()
-          .sort((a, b) => (a.rating.rate > b.rating.rate ? -1 : 1))
+        productsArr.slice().sort((a, b) => b.rating.rate - a.rating.rate)
       );
     } else if (sortParam === "reviews") {
       setProductsData(
-        productsArr
-          .slice()
-          .sort((a, b) => (a.rating.count > b.rating.count ? -1 : 1))
+        productsArr.slice().sort((a, b) => b.rating.count - a.rating.count)
       );
     }
   };
@@ -78,6 +80,7 @@ function App() {
           categoryFilter={categoryFilter}
           setCategoryFilter={setCategoryFilter}
           handleCategory={handleCategory}
+          handleResetCategory={handleResetCategory}
           sortBy={sortBy}
           setSortBy={setSortBy}
           handleSort={handleSort}

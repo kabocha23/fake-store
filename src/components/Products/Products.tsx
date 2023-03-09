@@ -15,6 +15,38 @@ interface ProductsProps {
   categoryFilter: string;
   setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
   handleSelect: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  sortBy: string;
+  setSortBy: React.Dispatch<React.SetStateAction<string>>;
+  sortedProductsData: {}[];
+  setSortedProductsData: React.Dispatch<React.SetStateAction<{}[]>>;
+  handleSort: (
+    sortParam: string,
+    productsArr: {
+      id: number;
+      title: string;
+      price: number;
+      description: string;
+      category: string;
+      image: string;
+      rating: {
+        rate: number;
+        count: number;
+      };
+    }[]
+  ) =>
+    | {
+        id: number;
+        title: string;
+        price: number;
+        description: string;
+        category: string;
+        image: string;
+        rating: {
+          rate: number;
+          count: number;
+        };
+      }[]
+    | undefined;
 }
 
 const Products: FC<ProductsProps> = ({
@@ -22,6 +54,11 @@ const Products: FC<ProductsProps> = ({
   categoryFilter,
   setCategoryFilter,
   handleSelect,
+  sortBy,
+  setSortBy,
+  sortedProductsData,
+  setSortedProductsData,
+  handleSort,
 }) => {
   return (
     <div className="products-container">

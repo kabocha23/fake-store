@@ -37,7 +37,8 @@ function App() {
   };
 
   const handleResetCategory = () => {
-    setCategoryFilter("Select Category");
+    if (categoryFilter !== "Select Category")
+      setCategoryFilter("Select Category");
   };
 
   const handleSort = (

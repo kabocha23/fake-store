@@ -1,4 +1,9 @@
 .products-container {
     display: flex;
+    flex-flow: column;
+}
+
+.products-list {
+    display: flex;
     flex-flow: row wrap;
 }

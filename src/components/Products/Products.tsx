@@ -1,5 +1,6 @@
 import { FC, useEffect } from "react";
-import Product from "../Product/Product";
+import ProductTile from "../ProductTile/ProductTile";
+import { Link } from "react-router-dom";
 import "./Products.css";
 
 interface ProductsProps {
@@ -85,16 +86,18 @@ const Products: FC<ProductsProps> = ({
               : product.category === categoryFilter
           )
           .map((productData) => (
-            <Product
-              key={`key-${productData.id}`}
-              prodId={productData.id}
-              title={productData.title}
-              price={productData.price}
-              description={productData.description}
-              category={productData.category}
-              image={productData.image}
-              rating={productData.rating}
-            />
+            <Link to={`/product/${productData.id}`}>
+              <ProductTile
+                key={`key-${productData.id}`}
+                prodId={productData.id}
+                title={productData.title}
+                price={productData.price}
+                description={productData.description}
+                category={productData.category}
+                image={productData.image}
+                rating={productData.rating}
+              />
+            </Link>
           ))}
       </div>
     </div>

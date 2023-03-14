@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import Navbar from "./components/Navbar/Navbar";
-import Products from "./components/Products/Products";
-import Footer from "./components/Footer/Footer";
+import { Routes, Route } from "react-router-dom";
+import Home from "./components/Home/Home";
+import ProductPage from "./components/ProductPage/ProductPage";
 import "./App.css";
 
 function App() {
@@ -21,8 +21,8 @@ function App() {
   const [sortBy, setSortBy] = useState<string>("none");
 
   useEffect(() => {
-    const url = "https://fakestoreapi.com/products";
-    const productsDataFetch = async () => {
+    const url: string = "https://fakestoreapi.com/products";
+    const productsDataFetch = async (): Promise<void> => {
       await fetch(url)
         .then((res) => res.json())
         .then((data) => setProductsData(data))
@@ -36,7 +36,7 @@ function App() {
     setCategoryFilter(e.target.value);
   };
 
-  const handleResetCategory = () => {
+  const handleResetCategory = (): void => {
     if (categoryFilter !== "Select Category")
       setCategoryFilter("Select Category");
   };
@@ -52,7 +52,7 @@ function App() {
       image: string;
       rating: { rate: number; count: number };
     }[]
-  ) => {
+  ): void => {
     if (sortParam === "Featured") {
       setProductsData(productsArr.slice().sort((a, b) => a.id - b.id));
     } else if (sortParam === "price low to high") {
@@ -72,22 +72,27 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <Navbar />
-      </header>
-      <main>
-        <Products
-          productsData={productsData}
-          categoryFilter={categoryFilter}
-          setCategoryFilter={setCategoryFilter}
-          handleCategory={handleCategory}
-          handleResetCategory={handleResetCategory}
-          sortBy={sortBy}
-          setSortBy={setSortBy}
-          handleSort={handleSort}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Home
+              productsData={productsData}
+              categoryFilter={categoryFilter}
+              setCategoryFilter={setCategoryFilter}
+              handleCategory={handleCategory}
+              handleResetCategory={handleResetCategory}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              handleSort={handleSort}
+            />
+          }
         />
-      </main>
-      <Footer />
+        <Route
+          path="/product/:id"
+          element={<ProductPage productsData={productsData} />}
+        />
+      </Routes>
     </div>
   );
 }

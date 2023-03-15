@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import "./ProductTile.css";
 
 interface ProductProps {
@@ -12,6 +13,7 @@ interface ProductProps {
 }
 
 const ProductTile: FC<ProductProps> = ({
+  prodId,
   title,
   price,
   description,
@@ -25,6 +27,7 @@ const ProductTile: FC<ProductProps> = ({
       <h2 id="producttile-price">${price}</h2>
       <h2 id="producttile-rating">{`${rating.rate} stars ${rating.count} reviews`}</h2>
       <p id="producttile-desc">{description}</p>
+      <Link to={`/product/${prodId}`}>More Details</Link>
     </div>
   );
 };

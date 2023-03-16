@@ -15,13 +15,11 @@ interface ProductsProps {
     rating: { rate: number; count: number };
   }[];
   categoryFilter: string;
-  setCategoryFilter: React.Dispatch<React.SetStateAction<string>>;
   handleCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleResetCategory: React.MouseEventHandler<HTMLButtonElement> | undefined;
   sortBy: string;
-  setSortBy: React.Dispatch<React.SetStateAction<string>>;
   handleSort: (
-    sortParam: string,
+    sortParam: React.ChangeEvent<HTMLSelectElement>,
     productsArr: {
       id: number;
       title: string;
@@ -37,11 +35,9 @@ interface ProductsProps {
 const Home: FC<ProductsProps> = ({
   productsData,
   categoryFilter,
-  setCategoryFilter,
   handleCategory,
   handleResetCategory,
   sortBy,
-  setSortBy,
   handleSort,
 }) => {
   return (
@@ -53,11 +49,9 @@ const Home: FC<ProductsProps> = ({
         <Products
           productsData={productsData}
           categoryFilter={categoryFilter}
-          setCategoryFilter={setCategoryFilter}
           handleCategory={handleCategory}
           handleResetCategory={handleResetCategory}
           sortBy={sortBy}
-          setSortBy={setSortBy}
           handleSort={handleSort}
         />
       </main>

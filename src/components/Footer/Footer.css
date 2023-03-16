@@ -1,0 +1,138 @@
+.footer-container {
+    position: relative;
+    background-color: hsl(0, 0%, 98%);
+    padding: 2em 0;
+}
+
+.footer-content {
+    width: 90%;
+    max-width: 1281px;
+    margin-left: auto;
+    margin-right: auto;
+    z-index: 15;
+}
+
+.footer-header {
+    display: flex;
+    flex-flow: row wrap;
+    width: 100%;
+    z-index: 15;
+}
+.footer-header-brand {
+    width: 50%;
+    margin-right: auto;
+    z-index: 15;
+}
+.footer-header-contacts {
+    display: flex;
+    width: 50%;
+    margin-left: auto;
+    justify-content: flex-end;
+    z-index: 15;
+}
+.footer-header-contacts a {
+    margin-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.footer-header-contacts a:hover {
+    filter: contrast(175%) brightness(3%);
+}
+
+.footer-body {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Karla', sans-serif;
+    font-weight: 700;
+    font-size: 0.8em;
+}
+.footer-body-sub {
+    list-style-type: none;
+    z-index: 15;
+}
+.footer-body-sub ul {
+    padding: 0;
+}
+.footer-body-sub ul li {
+    list-style-type: none;
+    margin-bottom: 10px;
+    color: hsl(256, 26%, 20%);
+}
+.footer-body-sub ul li:hover {
+    text-decoration: underline;
+}
+.footer-body-sub ul li a {
+    text-decoration: none;
+    cursor: pointer;
+}
+.foot-sub-head {
+    margin-bottom: 25px!important;
+}
+.foot-sub-head a {
+    color: hsl(273, 4%, 51%)!important;
+}
+
+#footer-mobile-overlay {
+    display: none;
+}
+#footer-desktop-overlay {
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+
+
+@media (max-width: 641px) {
+    .footer-header {
+        display: flex;
+        flex-flow: column wrap;
+    }
+    .footer-header-brand {
+        margin-top: 4em;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-header-brand img {
+        display: flex;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+    }
+    .footer-header-contacts {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 2em;
+        justify-content: space-evenly;
+    }
+    .footer-header-contacts a {
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+        justify-content: center;
+    }
+    .footer-body {
+        flex-flow: column wrap;
+    }
+    .footer-body-sub {
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 1.5em;
+        text-align: center;
+    }
+
+    #footer-mobile-overlay {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    }
+    #footer-desktop-overlay {
+        display: none;
+    }
+}

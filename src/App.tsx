@@ -42,7 +42,7 @@ function App() {
   };
 
   const handleSort = (
-    sortParam: string,
+    sortParam: React.ChangeEvent<HTMLSelectElement>,
     productsArr: {
       id: number;
       title: string;
@@ -53,17 +53,18 @@ function App() {
       rating: { rate: number; count: number };
     }[]
   ): void => {
-    if (sortParam === "Featured") {
+    if (sortParam) sortParam.preventDefault();
+    if (sortParam.target.value === "Featured") {
       setProductsData(productsArr.slice().sort((a, b) => a.id - b.id));
-    } else if (sortParam === "price low to high") {
+    } else if (sortParam.target.value === "price low to high") {
       setProductsData(productsArr.slice().sort((a, b) => a.price - b.price));
-    } else if (sortParam === "price high to low") {
+    } else if (sortParam.target.value === "price high to low") {
       setProductsData(productsArr.slice().sort((a, b) => b.price - a.price));
-    } else if (sortParam === "rating") {
+    } else if (sortParam.target.value === "rating") {
       setProductsData(
         productsArr.slice().sort((a, b) => b.rating.rate - a.rating.rate)
       );
-    } else if (sortParam === "reviews") {
+    } else if (sortParam.target.value === "reviews") {
       setProductsData(
         productsArr.slice().sort((a, b) => b.rating.count - a.rating.count)
       );
@@ -79,11 +80,9 @@ function App() {
             <Home
               productsData={productsData}
               categoryFilter={categoryFilter}
-              setCategoryFilter={setCategoryFilter}
               handleCategory={handleCategory}
               handleResetCategory={handleResetCategory}
               sortBy={sortBy}
-              setSortBy={setSortBy}
               handleSort={handleSort}
             />
           }

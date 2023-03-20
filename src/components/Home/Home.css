@@ -1,0 +1,24 @@
+.products-dropdowns {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.products-filter {
+    display: flex;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.products-filter label, select, button {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.products-sort {
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.products-sort label, select {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}

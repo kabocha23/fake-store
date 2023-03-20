@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import ProductPage from "./components/ProductPage/ProductPage";
 import "./App.css";
@@ -30,6 +30,8 @@ function App() {
     };
     productsDataFetch();
   }, []);
+
+  const navigateRoutes = useNavigate();
 
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     if (e) e.preventDefault();
@@ -89,7 +91,12 @@ function App() {
         />
         <Route
           path="/product/:id"
-          element={<ProductPage productsData={productsData} />}
+          element={
+            <ProductPage
+              productsData={productsData}
+              navigateRoutes={navigateRoutes}
+            />
+          }
         />
       </Routes>
     </div>

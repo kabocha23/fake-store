@@ -1,4 +1,4 @@
-import { FC, useEffect } from "react";
+import { FC } from "react";
 import ProductTile from "../ProductTile/ProductTile";
 import "./Products.css";
 
@@ -40,39 +40,42 @@ const Products: FC<ProductsProps> = ({
 }) => {
   return (
     <div className="products-container">
-      <div className="products-filter">
-        <label htmlFor="categorySelect">Filter by: </label>
+      <div className="products-dropdowns">
+        <div className="products-filter">
+          <label htmlFor="categorySelect">Filter by: </label>
 
-        <select
-          name="categorySelect"
-          value={categoryFilter}
-          id="categorySelector"
-          onChange={(e) => handleCategory(e)}
-        >
-          <option value="Select Category">Select Category</option>
-          <option value="men's clothing">Men's Clothing</option>
-          <option value="women's clothing">Women's Clothing</option>
-          <option value="electronics">Electronics</option>
-          <option value="jewelery">Jewelry</option>
-        </select>
-        <button onClick={handleResetCategory}>Reset</button>
-      </div>
-      <div className="products-sort">
-        <label htmlFor="sortSelect">Sort by: </label>
+          <select
+            name="categorySelect"
+            value={categoryFilter}
+            id="categorySelector"
+            onChange={(e) => handleCategory(e)}
+          >
+            <option value="Select Category">Select Category</option>
+            <option value="men's clothing">Men's Clothing</option>
+            <option value="women's clothing">Women's Clothing</option>
+            <option value="electronics">Electronics</option>
+            <option value="jewelery">Jewelry</option>
+          </select>
+          <button onClick={handleResetCategory}>Reset</button>
+        </div>
+        <div className="products-sort">
+          <label htmlFor="sortSelect">Sort by: </label>
 
-        <select
-          name="sortSelect"
-          value={sortBy}
-          id="sortSelect"
-          onChange={(e) => handleSort(e, productsData)}
-        >
-          <option value="Featured">Featured</option>
-          <option value="price low to high">Price: low to high</option>
-          <option value="price high to low">Price: high to low</option>
-          <option value="rating">Rating</option>
-          <option value="reviews">Reviews</option>
-        </select>
+          <select
+            name="sortSelect"
+            value={sortBy}
+            id="sortSelect"
+            onChange={(e) => handleSort(e, productsData)}
+          >
+            <option value="Featured">Featured</option>
+            <option value="price low to high">Price: low to high</option>
+            <option value="price high to low">Price: high to low</option>
+            <option value="rating">Rating</option>
+            <option value="reviews">Reviews</option>
+          </select>
+        </div>
       </div>
+
       <div className="products-list">
         {productsData
           .filter((product) =>

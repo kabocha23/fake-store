@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { NavigateFunction, useParams } from "react-router-dom";
 import "./ProductPage.css";
 
 interface ProductProps {
@@ -12,13 +12,18 @@ interface ProductProps {
     image: string;
     rating: { rate: number; count: number };
   }[];
+  navigateRoutes: NavigateFunction;
 }
 
-const ProductPage: FC<ProductProps> = ({ productsData }) => {
+const ProductPage: FC<ProductProps> = ({ productsData, navigateRoutes }) => {
   const { id } = useParams();
-  let idNum = +id! - 1;
+  const idNum = +id! - 1;
   return (
     <div className="productpage-container">
+      <div className="productpage-back">
+        <button onClick={() => navigateRoutes(-1)}>go back</button>
+      </div>
+
       <img
         src={productsData[idNum].image}
         alt={productsData[idNum].title}

@@ -6,4 +6,11 @@
 .products-list {
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-around;
 }
+
+a:-webkit-any-link {
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+  }

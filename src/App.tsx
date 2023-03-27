@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Home from "./components/Home/Home";
 import ProductPage from "./components/ProductPage/ProductPage";
+import cartIcon from "./images/icon-cart.svg";
 import "./App.css";
 
 function App() {
@@ -19,6 +20,8 @@ function App() {
   const [categoryFilter, setCategoryFilter] =
     useState<string>("Select Category");
   const [sortBy, setSortBy] = useState<string>("none");
+  const [quantity, setQuantity] = useState<number>(0);
+  const [cart, setCart] = useState<{ [itemId: number]: number }[]>([]);
 
   useEffect(() => {
     const url: string = "https://fakestoreapi.com/products";
@@ -56,6 +59,7 @@ function App() {
     }[]
   ): void => {
     if (sortParam) sortParam.preventDefault();
+    setSortBy(sortParam.target.value);
     if (sortParam.target.value === "Featured") {
       setProductsData(productsArr.slice().sort((a, b) => a.id - b.id));
     } else if (sortParam.target.value === "price low to high") {
@@ -73,6 +77,37 @@ function App() {
     }
   };
 
+  const decrementQty = (): void => {
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const incrementQty = (): void => {
+    setQuantity(quantity + 1);
+  };
+
+  const onAddToCart = (id: number, quantity: number): void => {
+    let tempCart = cart;
+    if (tempCart.length === 0) {
+      setCart([{ [id]: quantity }]);
+      return;
+    } else {
+      for (let i = 0; i < tempCart.length; i++) {
+        if (tempCart[i].hasOwnProperty(id)) {
+          tempCart[i][id] += quantity;
+          setCart(tempCart);
+          setQuantity(0);
+          return;
+        }
+      }
+      tempCart.push({ [id]: quantity });
+      setCart(tempCart);
+      setQuantity(0);
+      console.log(cart, quantity);
+    }
+  };
+
   return (
     <div className="App">
       <Routes>
@@ -86,6 +121,7 @@ function App() {
               handleResetCategory={handleResetCategory}
               sortBy={sortBy}
               handleSort={handleSort}
+              cartIcon={cartIcon}
             />
           }
         />
@@ -95,6 +131,11 @@ function App() {
             <ProductPage
               productsData={productsData}
               navigateRoutes={navigateRoutes}
+              cartIcon={cartIcon}
+              quantity={quantity}
+              decrementQty={decrementQty}
+              incrementQty={incrementQty}
+              onAddToCart={onAddToCart}
             />
           }
         />

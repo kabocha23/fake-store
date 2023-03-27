@@ -30,6 +30,7 @@ interface ProductsProps {
       rating: { rate: number; count: number };
     }[]
   ) => void;
+  cartIcon: string;
 }
 
 const Home: FC<ProductsProps> = ({
@@ -39,11 +40,12 @@ const Home: FC<ProductsProps> = ({
   handleResetCategory,
   sortBy,
   handleSort,
+  cartIcon,
 }) => {
   return (
     <div>
       <header className="home-header">
-        <Navbar />
+        <Navbar cartIcon={cartIcon} />
       </header>
       <main>
         <Products

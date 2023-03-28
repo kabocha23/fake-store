@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { NavigateFunction, useParams } from "react-router-dom";
+import AddToCart from "../AddToCart/AddToCart";
 import "./ProductPage.css";
 
 interface ProductProps {
@@ -13,15 +14,31 @@ interface ProductProps {
     rating: { rate: number; count: number };
   }[];
   navigateRoutes: NavigateFunction;
+  quantity: number;
+  decrementQty: React.MouseEventHandler<HTMLButtonElement>;
+  incrementQty: React.MouseEventHandler<HTMLButtonElement>;
+  onAddToCart: (itemId: number, quantity: number) => void;
+  cartIcon: string;
 }
 
-const ProductPage: FC<ProductProps> = ({ productsData, navigateRoutes }) => {
+const ProductPage: FC<ProductProps> = ({
+  productsData,
+  navigateRoutes,
+  quantity,
+  decrementQty,
+  incrementQty,
+  onAddToCart,
+  cartIcon,
+}) => {
   const { id } = useParams();
   const idNum = +id! - 1;
+  useEffect(() => {
+    console.log(idNum);
+  }, []);
   return (
     <div className="productpage-container">
       <div className="productpage-back">
-        <button onClick={() => navigateRoutes(-1)}>go back</button>
+        <button onClick={() => navigateRoutes(-1)}>Back</button>
       </div>
 
       <img
@@ -33,6 +50,14 @@ const ProductPage: FC<ProductProps> = ({ productsData, navigateRoutes }) => {
       <h2 id="productpage-price">${productsData[idNum].price}</h2>
       <h2 id="productpage-rating">{`${productsData[idNum].rating.rate} stars ${productsData[idNum].rating.count} reviews`}</h2>
       <p id="productpage-desc">{productsData[idNum].description}</p>
+      <AddToCart
+        quantity={quantity}
+        decrementQty={decrementQty}
+        incrementQty={incrementQty}
+        onAddToCart={onAddToCart}
+        cartIcon={cartIcon}
+        idNum={idNum}
+      />
     </div>
   );
 };

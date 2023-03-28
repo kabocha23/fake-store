@@ -56,7 +56,7 @@ const Products: FC<ProductsProps> = ({
             <option value="electronics">Electronics</option>
             <option value="jewelery">Jewelry</option>
           </select>
-          <button onClick={handleResetCategory}>Reset</button>
+          <button onClick={handleResetCategory}>Clear Filter</button>
         </div>
         <div className="products-sort">
           <label htmlFor="sortSelect">Sort by: </label>

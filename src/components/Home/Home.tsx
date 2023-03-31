@@ -31,6 +31,7 @@ interface ProductsProps {
     }[]
   ) => void;
   cartIcon: string;
+  cart: { [key: number]: number }[];
 }
 
 const Home: FC<ProductsProps> = ({
@@ -41,11 +42,12 @@ const Home: FC<ProductsProps> = ({
   sortBy,
   handleSort,
   cartIcon,
+  cart,
 }) => {
   return (
     <div>
       <header className="home-header">
-        <Navbar cartIcon={cartIcon} />
+        <Navbar productsData={productsData} cartIcon={cartIcon} cart={cart} />
       </header>
       <main>
         <Products

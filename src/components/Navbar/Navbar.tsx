@@ -2,7 +2,17 @@ import { FC } from "react";
 import "./Navbar.css";
 
 interface NavbarProps {
+  productsData: {
+    id: number;
+    title: string;
+    price: number;
+    description: string;
+    category: string;
+    image: string;
+    rating: { rate: number; count: number };
+  }[];
   cartIcon: string;
+  cart: { [key: number]: number }[];
 }
 
 const Navbar: FC<NavbarProps> = ({ cartIcon }) => {

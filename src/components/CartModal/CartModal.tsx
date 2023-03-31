@@ -11,9 +11,10 @@ interface CartModalProps {
     image: string;
     rating: { rate: number; count: number };
   }[];
+  cart: { [key: number]: number }[];
 }
 
-const CartModal: FC<CartModalProps> = ({}) => {
+const CartModal: FC<CartModalProps> = ({ productsData, cart }) => {
   return <div className="cartmodal-container"></div>;
 };
 

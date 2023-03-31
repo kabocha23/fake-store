@@ -91,6 +91,7 @@ function App() {
     let tempCart = cart;
     if (tempCart.length === 0) {
       setCart([{ [id]: quantity }]);
+      setQuantity(0);
       return;
     } else {
       for (let i = 0; i < tempCart.length; i++) {
@@ -104,7 +105,6 @@ function App() {
       tempCart.push({ [id]: quantity });
       setCart(tempCart);
       setQuantity(0);
-      console.log(cart, quantity);
     }
   };
 
@@ -122,6 +122,7 @@ function App() {
               sortBy={sortBy}
               handleSort={handleSort}
               cartIcon={cartIcon}
+              cart={cart}
             />
           }
         />

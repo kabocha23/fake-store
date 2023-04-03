@@ -1,3 +1,45 @@
 .navbar-container {
     display: flex;
+    width: 100%;
+    height: 4rem;
+}
+
+#navbar-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: rgb(107, 206, 173);
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+#navbar-logo span {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: rgb(56, 165, 255);
+}
+.navbar-right-group {
+    display: flex;
+    flex-flow: row;
+    margin-left: auto;
+}
+#navbar-login {
+    display: flex;
+    height: 100%;
+}
+#navbar-login p {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+#navbar-cart-box {
+    display: flex;
+    width: 6rem;
+    height: 100%;
+    margin-left: 1rem;
+}
+#navbar-cart-box img {
+    margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
 }

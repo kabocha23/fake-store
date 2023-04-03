@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Navbar from "../Navbar/Navbar";
 import Products from "../Products/Products";
 import Footer from "../Footer/Footer";
 import "./Home.css";
@@ -30,8 +29,6 @@ interface ProductsProps {
       rating: { rate: number; count: number };
     }[]
   ) => void;
-  cartIcon: string;
-  cart: { [key: number]: number }[];
 }
 
 const Home: FC<ProductsProps> = ({
@@ -41,14 +38,9 @@ const Home: FC<ProductsProps> = ({
   handleResetCategory,
   sortBy,
   handleSort,
-  cartIcon,
-  cart,
 }) => {
   return (
     <div>
-      <header className="home-header">
-        <Navbar productsData={productsData} cartIcon={cartIcon} cart={cart} />
-      </header>
       <main>
         <Products
           productsData={productsData}

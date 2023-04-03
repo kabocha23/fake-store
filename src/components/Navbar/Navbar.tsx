@@ -18,11 +18,21 @@ interface NavbarProps {
 const Navbar: FC<NavbarProps> = ({ cartIcon }) => {
   return (
     <div className="navbar-container">
-      <p>
-        <a href="">Sign in</a> or <a href="">register</a>
-      </p>
-      <div>
-        <img src={cartIcon} alt="cart"></img>
+      <div id="navbar-logo">
+        <p>
+          <span>fake</span>Store
+        </p>
+      </div>
+      <div className="navbar-right-group">
+        <div id="navbar-login">
+          <p>
+            <a href="">Sign in</a> or <a href="">register</a>
+          </p>
+        </div>
+
+        <div id="navbar-cart-box">
+          <img src={cartIcon} alt="cart"></img>
+        </div>
       </div>
     </div>
   );

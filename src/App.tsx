@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
+import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import ProductPage from "./components/ProductPage/ProductPage";
 import cartIcon from "./images/icon-cart.svg";
@@ -110,6 +111,9 @@ function App() {
 
   return (
     <div className="App">
+      <header className="home-header">
+        <Navbar productsData={productsData} cartIcon={cartIcon} cart={cart} />
+      </header>
       <Routes>
         <Route
           path="/"
@@ -121,8 +125,6 @@ function App() {
               handleResetCategory={handleResetCategory}
               sortBy={sortBy}
               handleSort={handleSort}
-              cartIcon={cartIcon}
-              cart={cart}
             />
           }
         />

@@ -25,6 +25,9 @@
     display: flex;
     height: 100%;
 }
+#navbar-login p a {
+    color: blue;
+}
 #navbar-login p {
     margin-top: auto;
     margin-left: auto;

@@ -41,23 +41,29 @@ const ProductPage: FC<ProductProps> = ({
         <button onClick={() => navigateRoutes(-1)}>Back</button>
       </div>
 
-      <img
-        src={productsData[idNum].image}
-        alt={productsData[idNum].title}
-        className="productpage-image"
-      ></img>
-      <h1 id="productpage-title">{productsData[idNum].title}</h1>
-      <h2 id="productpage-price">${productsData[idNum].price}</h2>
-      <h2 id="productpage-rating">{`${productsData[idNum].rating.rate} stars ${productsData[idNum].rating.count} reviews`}</h2>
-      <p id="productpage-desc">{productsData[idNum].description}</p>
-      <AddToCart
-        quantity={quantity}
-        decrementQty={decrementQty}
-        incrementQty={incrementQty}
-        onAddToCart={onAddToCart}
-        cartIcon={cartIcon}
-        idNum={idNum}
-      />
+      <div className="productpage-main">
+        <div className="productpage-image">
+          <img
+            src={productsData[idNum].image}
+            alt={productsData[idNum].title}
+          ></img>
+        </div>
+
+        <div className="productpage-details">
+          <h1 id="productpage-title">{productsData[idNum].title}</h1>
+          <h2 id="productpage-price">${productsData[idNum].price}</h2>
+          <h2 id="productpage-rating">{`${productsData[idNum].rating.rate} stars ${productsData[idNum].rating.count} reviews`}</h2>
+          <p id="productpage-desc">{productsData[idNum].description}</p>
+          <AddToCart
+            quantity={quantity}
+            decrementQty={decrementQty}
+            incrementQty={incrementQty}
+            onAddToCart={onAddToCart}
+            cartIcon={cartIcon}
+            idNum={idNum}
+          />
+        </div>
+      </div>
     </div>
   );
 };

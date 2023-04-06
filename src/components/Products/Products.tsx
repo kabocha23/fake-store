@@ -89,7 +89,6 @@ const Products: FC<ProductsProps> = ({
               prodId={productData.id}
               title={productData.title}
               price={productData.price}
-              description={productData.description}
               category={productData.category}
               image={productData.image}
               rating={productData.rating}

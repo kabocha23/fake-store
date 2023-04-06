@@ -6,7 +6,6 @@ interface ProductProps {
   prodId: number;
   title: string;
   price: number;
-  description: string;
   category: string;
   image: string;
   rating: { rate: number; count: number };
@@ -16,18 +15,18 @@ const ProductTile: FC<ProductProps> = ({
   prodId,
   title,
   price,
-  description,
   image,
   rating,
 }) => {
   return (
     <Link to={`/product/${prodId}`}>
       <div className="producttile-container">
-        <img src={image} alt={title} className="producttile-image"></img>
+        <div className="producttile-image">
+          <img src={image} alt={title}></img>
+        </div>
         <h1 id="producttile-title">{title}</h1>{" "}
         <h2 id="producttile-rating">{`${rating.rate} stars ${rating.count} reviews`}</h2>
         <h2 id="producttile-price">${price.toFixed(2)}</h2>
-        <p id="producttile-desc">{description}</p>
       </div>
     </Link>
   );

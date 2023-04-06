@@ -32,9 +32,6 @@ const ProductPage: FC<ProductProps> = ({
 }) => {
   const { id } = useParams();
   const idNum = +id! - 1;
-  useEffect(() => {
-    console.log(idNum);
-  }, []);
   return (
     <div className="productpage-container">
       <div className="productpage-back">

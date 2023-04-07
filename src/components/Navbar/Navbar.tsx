@@ -12,10 +12,17 @@ interface NavbarProps {
     rating: { rate: number; count: number };
   }[];
   cartIcon: string;
-  cart: { [key: number]: number }[];
+  cart: { productId: number; productQty: number }[];
+  cartTotal: number;
+  toggleCartModal: () => void;
 }
 
-const Navbar: FC<NavbarProps> = ({ cartIcon }) => {
+const Navbar: FC<NavbarProps> = ({
+  cartIcon,
+  cart,
+  cartTotal,
+  toggleCartModal,
+}) => {
   return (
     <div className="navbar-container">
       <div id="navbar-logo">
@@ -31,7 +38,14 @@ const Navbar: FC<NavbarProps> = ({ cartIcon }) => {
         </div>
 
         <div id="navbar-cart-box">
-          <img src={cartIcon} alt="cart"></img>
+          <img src={cartIcon} alt="cart" onClick={toggleCartModal}></img>
+          {cartTotal < 1 ? (
+            ""
+          ) : (
+            <div className="cart-qty-popup">
+              <p>{cartTotal}</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

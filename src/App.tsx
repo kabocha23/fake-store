@@ -22,7 +22,11 @@ function App() {
     useState<string>("Select Category");
   const [sortBy, setSortBy] = useState<string>("none");
   const [quantity, setQuantity] = useState<number>(0);
-  const [cart, setCart] = useState<{ [itemId: number]: number }[]>([]);
+  const [cart, setCart] = useState<{ productId: number; productQty: number }[]>(
+    []
+  );
+  const [cartTotal, setCartTotal] = useState<number>(0);
+  const [isCartModal, setIsCartModal] = useState(false);
 
   useEffect(() => {
     const url: string = "https://fakestoreapi.com/products";
@@ -32,10 +36,15 @@ function App() {
         .then((data) => setProductsData(data))
         .catch((error) => console.log(error));
     };
+
     productsDataFetch();
   }, []);
 
   const navigateRoutes = useNavigate();
+
+  const toggleCartModal = () => {
+    setIsCartModal(!isCartModal);
+  };
 
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>): void => {
     if (e) e.preventDefault();
@@ -91,28 +100,44 @@ function App() {
   const onAddToCart = (id: number, quantity: number): void => {
     let tempCart = cart;
     if (tempCart.length === 0) {
-      setCart([{ [id]: quantity }]);
+      setCart([{ productId: id, productQty: quantity }]);
       setQuantity(0);
+      getCartQty();
       return;
     } else {
       for (let i = 0; i < tempCart.length; i++) {
-        if (tempCart[i].hasOwnProperty(id)) {
-          tempCart[i][id] += quantity;
+        if (tempCart[i].productId === id) {
+          tempCart[i].productQty += quantity;
           setCart(tempCart);
           setQuantity(0);
+          getCartQty();
           return;
         }
       }
-      tempCart.push({ [id]: quantity });
+      tempCart.push({ productId: id, productQty: quantity });
       setCart(tempCart);
       setQuantity(0);
+      getCartQty();
     }
+  };
+  const getCartQty = () => {
+    let tempCartTotal: number = 0;
+    for (const product of cart) {
+      tempCartTotal += product.productQty;
+    }
+    setCartTotal(tempCartTotal);
   };
 
   return (
     <div className="App">
       <header className="home-header">
-        <Navbar productsData={productsData} cartIcon={cartIcon} cart={cart} />
+        <Navbar
+          productsData={productsData}
+          cartIcon={cartIcon}
+          cart={cart}
+          toggleCartModal={toggleCartModal}
+          cartTotal={cartTotal}
+        />
       </header>
       <Routes>
         <Route

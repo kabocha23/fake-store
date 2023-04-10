@@ -7,6 +7,7 @@ import cartIcon from "./images/icon-cart.svg";
 import "./App.css";
 
 function App() {
+  // state
   const [productsData, setProductsData] = useState<
     {
       id: number;
@@ -27,7 +28,9 @@ function App() {
   );
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [isCartModal, setIsCartModal] = useState(false);
+  // end state
 
+  // run on component mount
   useEffect(() => {
     const url: string = "https://fakestoreapi.com/products";
     const productsDataFetch = async (): Promise<void> => {
@@ -39,9 +42,13 @@ function App() {
 
     productsDataFetch();
   }, []);
+  // end componentDidMount
 
+  // routes
   const navigateRoutes = useNavigate();
+  // end routes
 
+  // functions
   const toggleCartModal = () => {
     setIsCartModal(!isCartModal);
   };
@@ -120,6 +127,7 @@ function App() {
       getCartQty();
     }
   };
+
   const getCartQty = () => {
     let tempCartTotal: number = 0;
     for (const product of cart) {
@@ -127,7 +135,9 @@ function App() {
     }
     setCartTotal(tempCartTotal);
   };
+  // end functions
 
+  // render
   return (
     <div className="App">
       <header className="home-header">

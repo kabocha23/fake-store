@@ -1,4 +1,5 @@
 import { FC } from "react";
+import CartModal from "../CartModal/CartModal";
 import "./Navbar.css";
 
 interface NavbarProps {
@@ -14,14 +15,21 @@ interface NavbarProps {
   cartIcon: string;
   cart: { productId: number; productQty: number }[];
   cartTotal: number;
+  setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   toggleCartModal: () => void;
+  isCartModal: boolean;
+  onRemoveFromCart: () => void;
 }
 
 const Navbar: FC<NavbarProps> = ({
+  productsData,
   cartIcon,
   cart,
   cartTotal,
+  setCartTotal,
+  isCartModal,
   toggleCartModal,
+  onRemoveFromCart,
 }) => {
   return (
     <div className="navbar-container">
@@ -38,13 +46,30 @@ const Navbar: FC<NavbarProps> = ({
         </div>
 
         <div id="navbar-cart-box">
-          <img src={cartIcon} alt="cart" onClick={toggleCartModal}></img>
+          <img
+            src={cartIcon}
+            alt="cart"
+            onClick={toggleCartModal}
+            id="cart-icon"
+          ></img>
           {cartTotal < 1 ? (
             ""
           ) : (
             <div className="cart-qty-popup">
               <p>{cartTotal}</p>
             </div>
+          )}
+
+          {isCartModal ? (
+            <CartModal
+              productsData={productsData}
+              cart={cart}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              onRemoveFromCart={onRemoveFromCart}
+            />
+          ) : (
+            ""
           )}
         </div>
       </div>

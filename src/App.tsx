@@ -41,7 +41,8 @@ function App() {
     };
 
     productsDataFetch();
-  }, []);
+    getCartQty();
+  }, [quantity]);
   // end componentDidMount
 
   // routes
@@ -128,7 +129,9 @@ function App() {
     }
   };
 
-  const getCartQty = () => {
+  const onRemoveFromCart = () => {};
+
+  const getCartQty = (): void => {
     let tempCartTotal: number = 0;
     for (const product of cart) {
       tempCartTotal += product.productQty;
@@ -146,7 +149,10 @@ function App() {
           cartIcon={cartIcon}
           cart={cart}
           toggleCartModal={toggleCartModal}
+          isCartModal={isCartModal}
           cartTotal={cartTotal}
+          setCartTotal={setCartTotal}
+          onRemoveFromCart={onRemoveFromCart}
         />
       </header>
       <Routes>

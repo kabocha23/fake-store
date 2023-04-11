@@ -59,7 +59,7 @@
     background-color: transparent;
     transition: background-color 0.4s ease-in-out;
 }
-#navbar-cart-box img {
+#cart-icon {
     margin-top: auto;
     margin-left: auto;
     margin-right: auto;

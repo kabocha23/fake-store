@@ -13,6 +13,8 @@ interface CartModalProps {
     rating: { rate: number; count: number };
   }[];
   cart: { productId: number; productQty: number }[];
+  cartQuantity: number;
+  setCartQuantity: React.Dispatch<React.SetStateAction<number>>;
   cartTotal: number;
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   onRemoveFromCart: () => void;
@@ -21,6 +23,7 @@ interface CartModalProps {
 const CartModal: FC<CartModalProps> = ({
   productsData,
   cart,
+  cartQuantity,
   cartTotal,
   onRemoveFromCart,
 }) => {
@@ -37,8 +40,8 @@ const CartModal: FC<CartModalProps> = ({
             <div className="cart-products">
               {cart.map((product) => {
                 return (
-                  <div className="cart-each-product">
-                    <p key={product.productId} id="cart-product-name">
+                  <div key={product.productId} className="cart-each-product">
+                    <p id="cart-product-name">
                       {productsData[product.productId].title}
                     </p>
                     <p id="cart-product-qty"> x{product.productQty}</p>
@@ -52,6 +55,11 @@ const CartModal: FC<CartModalProps> = ({
                   </div>
                 );
               })}
+            </div>
+            <div id="cart-product-subtotal">
+              <p>
+                Subtotal: <span>${cartTotal}</span>
+              </p>
             </div>
             <div className="cart-checkout">
               <button>Checkout</button>

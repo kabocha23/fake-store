@@ -14,6 +14,8 @@ interface NavbarProps {
   }[];
   cartIcon: string;
   cart: { productId: number; productQty: number }[];
+  cartQuantity: number;
+  setCartQuantity: React.Dispatch<React.SetStateAction<number>>;
   cartTotal: number;
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   toggleCartModal: () => void;
@@ -25,6 +27,8 @@ const Navbar: FC<NavbarProps> = ({
   productsData,
   cartIcon,
   cart,
+  cartQuantity,
+  setCartQuantity,
   cartTotal,
   setCartTotal,
   isCartModal,
@@ -52,11 +56,11 @@ const Navbar: FC<NavbarProps> = ({
             onClick={toggleCartModal}
             id="cart-icon"
           ></img>
-          {cartTotal < 1 ? (
+          {cartQuantity < 1 ? (
             ""
           ) : (
             <div className="cart-qty-popup">
-              <p>{cartTotal}</p>
+              <p>{cartQuantity}</p>
             </div>
           )}
 
@@ -64,6 +68,8 @@ const Navbar: FC<NavbarProps> = ({
             <CartModal
               productsData={productsData}
               cart={cart}
+              cartQuantity={cartQuantity}
+              setCartQuantity={setCartQuantity}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               onRemoveFromCart={onRemoveFromCart}

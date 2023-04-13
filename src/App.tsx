@@ -26,11 +26,12 @@ function App() {
   const [cart, setCart] = useState<{ productId: number; productQty: number }[]>(
     []
   );
+  const [cartQuantity, setCartQuantity] = useState<number>(0);
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [isCartModal, setIsCartModal] = useState(false);
   // end state
 
-  // run on component mount
+  // component lifecycle side effects
   useEffect(() => {
     const url: string = "https://fakestoreapi.com/products";
     const productsDataFetch = async (): Promise<void> => {
@@ -41,9 +42,9 @@ function App() {
     };
 
     productsDataFetch();
-    getCartQty();
+    getCartTotals();
   }, [quantity]);
-  // end componentDidMount
+  // end component lifecycle side effects
 
   // routes
   const navigateRoutes = useNavigate();
@@ -110,7 +111,7 @@ function App() {
     if (tempCart.length === 0) {
       setCart([{ productId: id, productQty: quantity }]);
       setQuantity(0);
-      getCartQty();
+      getCartTotals();
       return;
     } else {
       for (let i = 0; i < tempCart.length; i++) {
@@ -118,24 +119,28 @@ function App() {
           tempCart[i].productQty += quantity;
           setCart(tempCart);
           setQuantity(0);
-          getCartQty();
+          getCartTotals();
           return;
         }
       }
       tempCart.push({ productId: id, productQty: quantity });
       setCart(tempCart);
       setQuantity(0);
-      getCartQty();
+      getCartTotals();
     }
   };
 
   const onRemoveFromCart = () => {};
 
-  const getCartQty = (): void => {
-    let tempCartTotal: number = 0;
+  const getCartTotals = (): void => {
+    let tempCartQuantity: number = 0,
+      tempCartTotal: number = 0;
     for (const product of cart) {
-      tempCartTotal += product.productQty;
+      tempCartQuantity += product.productQty;
+      tempCartTotal +=
+        productsData[product.productId].price * product.productQty;
     }
+    setCartQuantity(tempCartQuantity);
     setCartTotal(tempCartTotal);
   };
   // end functions
@@ -150,6 +155,8 @@ function App() {
           cart={cart}
           toggleCartModal={toggleCartModal}
           isCartModal={isCartModal}
+          cartQuantity={cartQuantity}
+          setCartQuantity={setCartQuantity}
           cartTotal={cartTotal}
           setCartTotal={setCartTotal}
           onRemoveFromCart={onRemoveFromCart}

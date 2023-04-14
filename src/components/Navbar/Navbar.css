@@ -45,7 +45,6 @@
     width: 6rem;
     height: 100%;
     margin-left: 1rem;
-    cursor: pointer;
     position: relative;
     height: 25%;
     margin: auto;
@@ -64,6 +63,10 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    cursor: pointer;
+}
+#cart-icon:hover {
+    filter: contrast(175%) brightness(3%);
 }
 
 /* cart quantity bubble */
@@ -82,7 +85,7 @@
     border-radius: 50px;
 }
 .cart-qty-popup p {
-    font-size: 10px;
+    font-size: 0.65rem;
     font-weight: bold;
     margin: 0 auto;
     color: white;

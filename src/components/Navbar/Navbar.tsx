@@ -20,6 +20,7 @@ interface NavbarProps {
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   toggleCartModal: () => void;
   isCartModal: boolean;
+  setIsCartModal: React.Dispatch<React.SetStateAction<boolean>>;
   onRemoveFromCart: () => void;
 }
 
@@ -32,6 +33,7 @@ const Navbar: FC<NavbarProps> = ({
   cartTotal,
   setCartTotal,
   isCartModal,
+  setIsCartModal,
   toggleCartModal,
   onRemoveFromCart,
 }) => {
@@ -73,6 +75,8 @@ const Navbar: FC<NavbarProps> = ({
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
               onRemoveFromCart={onRemoveFromCart}
+              isCartModal={isCartModal}
+              setIsCartModal={setIsCartModal}
             />
           ) : (
             ""

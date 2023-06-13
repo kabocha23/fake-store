@@ -155,6 +155,7 @@ function App() {
           cart={cart}
           toggleCartModal={toggleCartModal}
           isCartModal={isCartModal}
+          setIsCartModal={setIsCartModal}
           cartQuantity={cartQuantity}
           setCartQuantity={setCartQuantity}
           cartTotal={cartTotal}

@@ -18,6 +18,8 @@ interface CartModalProps {
   cartTotal: number;
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
   onRemoveFromCart: () => void;
+  isCartModal: boolean;
+  setIsCartModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const CartModal: FC<CartModalProps> = ({
@@ -26,6 +28,8 @@ const CartModal: FC<CartModalProps> = ({
   cartQuantity,
   cartTotal,
   onRemoveFromCart,
+  isCartModal,
+  setIsCartModal,
 }) => {
   return (
     <div className="cart-modal-container">

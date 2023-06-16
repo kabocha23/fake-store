@@ -22,7 +22,7 @@ function App() {
   const [categoryFilter, setCategoryFilter] =
     useState<string>("Select Category");
   const [sortBy, setSortBy] = useState<string>("none");
-  const [quantity, setQuantity] = useState<number>(0);
+  const [quantity, setQuantity] = useState<number>(1);
   const [cart, setCart] = useState<{ productId: number; productQty: number }[]>(
     []
   );
@@ -97,7 +97,7 @@ function App() {
   };
 
   const decrementQty = (): void => {
-    if (quantity > 0) {
+    if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };

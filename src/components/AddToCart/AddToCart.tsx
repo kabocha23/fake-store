@@ -21,7 +21,7 @@ const AddToCart: FC<ProductProps> = ({
   return (
     <div className="productpage-addtocart">
       <div className="addToCart-counter">
-        <button onClick={decrementQty} disabled={quantity === 0}>
+        <button onClick={decrementQty} disabled={quantity === 1}>
           <span className="addToCart-counter-change">-</span>
         </button>
         <span className="addToCart-count">{quantity}</span>

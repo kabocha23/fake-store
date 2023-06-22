@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import deleteIcon from "../../images/icon-delete.svg";
 import "./CartModal.css";
 
@@ -69,7 +70,9 @@ const CartModal: FC<CartModalProps> = ({
               </p>
             </div>
             <div className="cart-checkout">
-              <button>Checkout</button>
+              <Link to={`/checkout`}>
+                <button>Checkout</button>
+              </Link>
             </div>
           </div>
         )}

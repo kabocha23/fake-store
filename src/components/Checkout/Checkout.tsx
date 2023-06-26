@@ -16,6 +16,15 @@ interface CheckoutProps {
   quantity: number;
   decrementQty: React.MouseEventHandler<HTMLButtonElement>;
   incrementQty: React.MouseEventHandler<HTMLButtonElement>;
+  cart: { productId: number; productQty: number }[];
+  cartQuantity: number;
+  setCartQuantity: React.Dispatch<React.SetStateAction<number>>;
+  cartTotal: number;
+  setCartTotal: React.Dispatch<React.SetStateAction<number>>;
+  toggleCartModal: () => void;
+  isCartModal: boolean;
+  setIsCartModal: React.Dispatch<React.SetStateAction<boolean>>;
+  onRemoveFromCart: () => void;
 }
 
 const Checkout: FC<CheckoutProps> = ({
@@ -24,6 +33,15 @@ const Checkout: FC<CheckoutProps> = ({
   quantity,
   decrementQty,
   incrementQty,
+  cart,
+  cartQuantity,
+  setCartQuantity,
+  cartTotal,
+  setCartTotal,
+  isCartModal,
+  setIsCartModal,
+  toggleCartModal,
+  onRemoveFromCart,
 }) => {
   return (
     <div className="checkout-container">

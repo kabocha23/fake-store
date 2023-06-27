@@ -3,6 +3,7 @@ import { Routes, Route, useNavigate } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./components/Home/Home";
 import ProductPage from "./components/ProductPage/ProductPage";
+import Checkout from "./components/Checkout/Checkout";
 import cartIcon from "./images/icon-cart.svg";
 import "./App.css";
 
@@ -110,7 +111,7 @@ function App() {
     let tempCart = cart;
     if (tempCart.length === 0) {
       setCart([{ productId: id, productQty: quantity }]);
-      setQuantity(0);
+      setQuantity(1);
       getCartTotals();
       return;
     } else {
@@ -118,14 +119,14 @@ function App() {
         if (tempCart[i].productId === id) {
           tempCart[i].productQty += quantity;
           setCart(tempCart);
-          setQuantity(0);
+          setQuantity(1);
           getCartTotals();
           return;
         }
       }
       tempCart.push({ productId: id, productQty: quantity });
       setCart(tempCart);
-      setQuantity(0);
+      setQuantity(1);
       getCartTotals();
     }
   };
@@ -188,6 +189,27 @@ function App() {
               decrementQty={decrementQty}
               incrementQty={incrementQty}
               onAddToCart={onAddToCart}
+            />
+          }
+        />
+        <Route
+          path="/checkout"
+          element={
+            <Checkout
+              productsData={productsData}
+              navigateRoutes={navigateRoutes}
+              quantity={quantity}
+              decrementQty={decrementQty}
+              incrementQty={incrementQty}
+              cart={cart}
+              toggleCartModal={toggleCartModal}
+              isCartModal={isCartModal}
+              setIsCartModal={setIsCartModal}
+              cartQuantity={cartQuantity}
+              setCartQuantity={setCartQuantity}
+              cartTotal={cartTotal}
+              setCartTotal={setCartTotal}
+              onRemoveFromCart={onRemoveFromCart}
             />
           }
         />

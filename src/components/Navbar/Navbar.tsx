@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import CartModal from "../CartModal/CartModal";
 import "./Navbar.css";
 
@@ -40,9 +41,10 @@ const Navbar: FC<NavbarProps> = ({
   return (
     <div className="navbar-container">
       <div id="navbar-logo">
-        <p>
-          <span>fake</span>Store
-        </p>
+        <Link to={`/`}>
+          <span id="logo-fake">fake</span>
+          <span id="logo-store">Store</span>
+        </Link>
       </div>
       <div className="navbar-right-group">
         <div id="navbar-login">

@@ -12,14 +12,18 @@
 #navbar-logo {
     font-size: 2rem;
     font-weight: 800;
-    color: rgb(107, 206, 173);
     margin-left: 1rem;
     margin-right: 1rem;
 }
 #navbar-logo span {
     font-size: 1.5rem;
     font-weight: 800;
+}
+#logo-fake {
     color: rgb(56, 165, 255);
+}
+#logo-store {
+    color: rgb(107, 206, 173);
 }
 .navbar-right-group {
     display: flex;

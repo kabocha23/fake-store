@@ -1,0 +1,14 @@
+.checkout-container {
+    display: flex;
+    flex-flow: column;
+    max-width: 1281px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.checkout-product {
+    display: flex;
+    flex-flow: row;
+}
+#checkout-img {
+    width: 10rem;
+}

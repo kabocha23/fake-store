@@ -1,5 +1,6 @@
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import { NavigateFunction } from "react-router-dom";
+import deleteIcon from "../../images/icon-delete.svg";
 import "./Checkout.css";
 
 interface CheckoutProps {
@@ -48,19 +49,29 @@ const Checkout: FC<CheckoutProps> = ({
       <div className="checkout-back">
         <button onClick={() => navigateRoutes(-1)}>Back</button>
       </div>
-
-      <div className="checkout-main">
-        <div className="checkout-image">
-          <img src={productsData[0].image} alt={productsData[0].title}></img>
-        </div>
-
-        <div className="checkout-details">
-          <h1 id="checkout-title">{productsData[0].title}</h1>
-          <h2 id="checkout-price">${productsData[0].price}</h2>
-          <h2 id="checkout-rating">{`${productsData[0].rating.rate} stars ${productsData[0].rating.count} reviews`}</h2>
-          <p id="checkout-desc">{productsData[0].description}</p>
-        </div>
-      </div>
+      {cart.map((product) => {
+        return (
+          <div key={product.productId} className="checkout-product">
+            <img
+              id="checkout-img"
+              src={productsData[product.productId].image}
+              alt={productsData[product.productId].title}
+            ></img>
+            <p id="checkout-name">{productsData[product.productId].title}</p>
+            <p id="checkout-price">
+              ${productsData[product.productId].price.toFixed(2)}
+            </p>
+            <p id="checkout-qty"> Qty: {product.productQty}</p>
+            <div id="checkout-delete">
+              <img
+                src={deleteIcon}
+                onClick={() => onRemoveFromCart}
+                alt="delete"
+              ></img>
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 };

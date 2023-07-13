@@ -22,6 +22,8 @@ interface CheckoutProps {
   setCartQuantity: React.Dispatch<React.SetStateAction<number>>;
   cartTotal: number;
   setCartTotal: React.Dispatch<React.SetStateAction<number>>;
+  cartTax: number;
+  setCartTax: React.Dispatch<React.SetStateAction<number>>;
   toggleCartModal: () => void;
   isCartModal: boolean;
   setIsCartModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -39,6 +41,8 @@ const Checkout: FC<CheckoutProps> = ({
   setCartQuantity,
   cartTotal,
   setCartTotal,
+  cartTax,
+  setCartTax,
   isCartModal,
   setIsCartModal,
   toggleCartModal,
@@ -72,6 +76,12 @@ const Checkout: FC<CheckoutProps> = ({
           </div>
         );
       })}
+      <div>
+        <p>Subtotal: ${cartTotal}</p>
+        <p>Taxes: ${(cartTotal * 0.095).toFixed(2)}</p>
+        <p>Shipping: ${(7.0).toFixed(2)}</p>
+        <p>Total: </p>
+      </div>
     </div>
   );
 };

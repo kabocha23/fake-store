@@ -29,14 +29,15 @@ function App() {
   );
   const [cartQuantity, setCartQuantity] = useState<number>(0);
   const [cartTotal, setCartTotal] = useState<number>(0);
+  const [cartTax, setCartTax] = useState<number>(0);
   const [isCartModal, setIsCartModal] = useState(false);
   // end state
 
   // component lifecycle side effects
   useEffect(() => {
-    const url: string = "https://fakestoreapi.com/products";
+    const productsURL: string = "https://fakestoreapi.com/products";
     const productsDataFetch = async (): Promise<void> => {
-      await fetch(url)
+      await fetch(productsURL)
         .then((res) => res.json())
         .then((data) => setProductsData(data))
         .catch((error) => console.log(error));
@@ -209,6 +210,8 @@ function App() {
               setCartQuantity={setCartQuantity}
               cartTotal={cartTotal}
               setCartTotal={setCartTotal}
+              cartTax={cartTax}
+              setCartTax={setCartTax}
               onRemoveFromCart={onRemoveFromCart}
             />
           }

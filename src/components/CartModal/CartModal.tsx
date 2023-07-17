@@ -71,7 +71,9 @@ const CartModal: FC<CartModalProps> = ({
             </div>
             <div className="cart-checkout">
               <Link to={`/checkout`}>
-                <button id="checkout-btn">Checkout</button>
+                <button id="checkout-btn">
+                  Checkout {cart.length} {cart.length === 1 ? "item" : "items"}
+                </button>
               </Link>
               <Link to={`/checkout`}>
                 <button id="go-to-cart-btn">Go to Cart</button>

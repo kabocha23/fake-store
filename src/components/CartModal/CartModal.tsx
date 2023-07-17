@@ -71,7 +71,10 @@ const CartModal: FC<CartModalProps> = ({
             </div>
             <div className="cart-checkout">
               <Link to={`/checkout`}>
-                <button>Checkout</button>
+                <button id="checkout-btn">Checkout</button>
+              </Link>
+              <Link to={`/checkout`}>
+                <button id="go-to-cart-btn">Go to Cart</button>
               </Link>
             </div>
           </div>

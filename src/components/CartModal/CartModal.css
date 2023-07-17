@@ -130,16 +130,16 @@
 
 /* checkout button */
 .cart-checkout {
+    width: 85%;
+    display: flex;
     margin-top: auto;
+    justify-content: space-between;
 }
 .cart-checkout button {
     all: unset;
     cursor: pointer;
-    width: 200px;
+    width: 10rem;
     height: 35px;
-    background-color: rgb(56, 165, 255);
-    border: none;
-    color: white;
     text-align: center;
     text-decoration: none;
     display: inline-block;
@@ -147,6 +147,16 @@
     font-weight: bold;
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+#go-to-cart-btn {
+    background-color: rgba(255, 255, 255, 0);
+    border: 0.1rem solid rgb(117, 117, 117);
+    color: rgb(117, 117, 117);
+}
+#checkout-btn {
+    background-color: rgb(56, 165, 255);
+    border: none;
+    color: white;
 }
 
 

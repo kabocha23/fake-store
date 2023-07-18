@@ -6,7 +6,6 @@ interface ProductProps {
   decrementQty: React.MouseEventHandler<HTMLButtonElement>;
   incrementQty: React.MouseEventHandler<HTMLButtonElement>;
   onAddToCart: (itemId: number, quantity: number) => void;
-  cartIcon: string;
   idNum: number;
 }
 
@@ -15,7 +14,6 @@ const AddToCart: FC<ProductProps> = ({
   decrementQty,
   incrementQty,
   onAddToCart,
-  cartIcon,
   idNum,
 }) => {
   return (
@@ -34,7 +32,6 @@ const AddToCart: FC<ProductProps> = ({
           onClick={() => onAddToCart(idNum, quantity)}
           disabled={quantity === 0}
         >
-          <img src={cartIcon} alt="cart"></img>
           <span>Add to Cart</span>
         </button>
       </div>

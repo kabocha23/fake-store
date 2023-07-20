@@ -7,6 +7,15 @@
     margin-right: auto;
 }
 
+.productpage-back>button {
+    all: unset;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+}
+
 .productpage-main {
     display: flex;
     flex-direction: row;

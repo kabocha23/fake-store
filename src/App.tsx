@@ -24,6 +24,7 @@ function App() {
     useState<string>("Select Category");
   const [sortBy, setSortBy] = useState<string>("none");
   const [quantity, setQuantity] = useState<number>(1);
+  const [lastAddedId, setLastAddedId] = useState<number>(0);
   const [cart, setCart] = useState<{ productId: number; productQty: number }[]>(
     []
   );
@@ -31,6 +32,7 @@ function App() {
   const [cartTotal, setCartTotal] = useState<number>(0);
   const [cartTax, setCartTax] = useState<number>(0);
   const [isCartModal, setIsCartModal] = useState(false);
+  const [addedToCartModal, setAddedToCartModal] = useState(false);
   // end state
 
   // component lifecycle side effects
@@ -55,6 +57,10 @@ function App() {
   // functions
   const toggleCartModal = () => {
     setIsCartModal(!isCartModal);
+  };
+
+  const toggleAddedToCartModal = () => {
+    setAddedToCartModal(!addedToCartModal);
   };
 
   const handleCategory = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -109,6 +115,7 @@ function App() {
   };
 
   const onAddToCart = (id: number, quantity: number): void => {
+    setLastAddedId(id);
     let tempCart = cart;
     if (tempCart.length === 0) {
       setCart([{ productId: id, productQty: quantity }]);
@@ -185,7 +192,6 @@ function App() {
             <ProductPage
               productsData={productsData}
               navigateRoutes={navigateRoutes}
-              cartIcon={cartIcon}
               quantity={quantity}
               decrementQty={decrementQty}
               incrementQty={incrementQty}

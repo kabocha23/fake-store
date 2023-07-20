@@ -18,7 +18,6 @@ interface ProductProps {
   decrementQty: React.MouseEventHandler<HTMLButtonElement>;
   incrementQty: React.MouseEventHandler<HTMLButtonElement>;
   onAddToCart: (itemId: number, quantity: number) => void;
-  cartIcon: string;
 }
 
 const ProductPage: FC<ProductProps> = ({
@@ -28,14 +27,15 @@ const ProductPage: FC<ProductProps> = ({
   decrementQty,
   incrementQty,
   onAddToCart,
-  cartIcon,
 }) => {
   const { id } = useParams();
   const idNum = +id! - 1;
   return (
     <div className="productpage-container">
       <div className="productpage-back">
-        <button onClick={() => navigateRoutes(-1)}>Back</button>
+        <button onClick={() => navigateRoutes(-1)}>
+          {String.fromCharCode(8592)} Back
+        </button>
       </div>
 
       <div className="productpage-main">
@@ -56,7 +56,6 @@ const ProductPage: FC<ProductProps> = ({
             decrementQty={decrementQty}
             incrementQty={incrementQty}
             onAddToCart={onAddToCart}
-            cartIcon={cartIcon}
             idNum={idNum}
           />
         </div>

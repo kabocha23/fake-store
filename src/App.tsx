@@ -183,6 +183,7 @@ function App() {
               handleResetCategory={handleResetCategory}
               sortBy={sortBy}
               handleSort={handleSort}
+              setQuantity={setQuantity}
             />
           }
         />

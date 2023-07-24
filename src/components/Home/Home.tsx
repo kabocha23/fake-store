@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import Products from "../Products/Products";
 import Footer from "../Footer/Footer";
 import "./Home.css";
@@ -29,6 +29,7 @@ interface ProductsProps {
       rating: { rate: number; count: number };
     }[]
   ) => void;
+  setQuantity: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const Home: FC<ProductsProps> = ({
@@ -38,7 +39,12 @@ const Home: FC<ProductsProps> = ({
   handleResetCategory,
   sortBy,
   handleSort,
+  setQuantity,
 }) => {
+  useEffect(() => {
+    setQuantity(1);
+  }, []);
+
   return (
     <div>
       <main>

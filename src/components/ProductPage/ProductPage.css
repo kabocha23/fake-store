@@ -33,4 +33,10 @@
 .productpage-details {
     display: flex;
     flex-direction: column;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+.productpage-details > * {
+    margin-bottom: 1rem;
 }

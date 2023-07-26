@@ -18,7 +18,7 @@
     font-weight: bold;
     border-radius: 10px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-    border: 0.1rem solid rgb(117, 117, 117);
+    border: 0.1rem solid rgba(117, 117, 117, 0.2);
 }
 
 .addToCart-submit button {

@@ -24,18 +24,23 @@
     margin-right: auto;
     object-fit: contain;
     height: 15rem;
-    transition: all 0.25s;
+    transition: all 0.50s;
 }
 .producttile-image img:hover {
-    transform: scale(1.1);
+    transform: scale(1.05);
+    cursor: pointer;
 }
 
 #producttile-title {
     font-size: 1.25rem;
+    transition: all 0.15s;
+}
+#producttile-title:hover {
+    color: rgb(56, 165, 255);
 }
 #producttile-price {
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.1rem;
+    font-weight: 700;
 }
 #producttile-rating {
     font-size: 1rem;

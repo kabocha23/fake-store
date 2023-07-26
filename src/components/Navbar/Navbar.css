@@ -69,9 +69,10 @@
     margin-right: auto;
     margin-bottom: auto;
     cursor: pointer;
+    transition: all 0.1s;
 }
 #cart-icon:hover {
-    filter: contrast(175%) brightness(3%);
+    filter: invert(55%) sepia(47%) saturate(2341%) hue-rotate(182deg) brightness(102%) contrast(101%)
 }
 
 /* cart quantity bubble */

@@ -36,6 +36,7 @@ const ProductPage: FC<ProductProps> = ({
         <button onClick={() => navigateRoutes(-1)}>
           {String.fromCharCode(8592)} Back
         </button>
+        <hr></hr>
       </div>
 
       <div className="productpage-main">

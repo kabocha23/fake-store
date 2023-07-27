@@ -51,36 +51,50 @@ const Checkout: FC<CheckoutProps> = ({
   return (
     <div className="checkout-container">
       <div className="checkout-back">
-        <button onClick={() => navigateRoutes(-1)}>Back</button>
+        <button onClick={() => navigateRoutes(-1)}>
+          {String.fromCharCode(8592)} Back
+        </button>
       </div>
-      {cart.map((product) => {
-        return (
-          <div key={product.productId} className="checkout-product">
-            <img
-              id="checkout-img"
-              src={productsData[product.productId].image}
-              alt={productsData[product.productId].title}
-            ></img>
-            <p id="checkout-name">{productsData[product.productId].title}</p>
-            <p id="checkout-price">
-              ${productsData[product.productId].price.toFixed(2)}
-            </p>
-            <p id="checkout-qty"> Qty: {product.productQty}</p>
-            <div id="checkout-delete">
+      <hr></hr>
+      {cart.length === 0 ? (
+        <p id="checkout-no-items-msg">
+          You do not have any items in your cart!
+        </p>
+      ) : (
+        cart.map((product) => {
+          return (
+            <div key={product.productId} className="checkout-product">
               <img
-                src={deleteIcon}
-                onClick={() => onRemoveFromCart}
-                alt="delete"
+                id="checkout-img"
+                src={productsData[product.productId].image}
+                alt={productsData[product.productId].title}
               ></img>
+              <div className="checkout-details">
+                <p id="checkout-name">
+                  {productsData[product.productId].title}
+                </p>
+                <p id="checkout-price">
+                  ${productsData[product.productId].price.toFixed(2)}
+                </p>
+                <label htmlFor="checkout-qty">Qty: </label>
+                <input id="checkout-qty" value={product.productQty}></input>
+                <div id="checkout-delete">
+                  <img
+                    src={deleteIcon}
+                    onClick={() => onRemoveFromCart}
+                    alt="delete"
+                  ></img>
+                </div>
+              </div>
             </div>
-          </div>
-        );
-      })}
-      <div>
-        <p>Subtotal: ${cartTotal}</p>
+          );
+        })
+      )}
+      <div className="checkout-totals">
+        <p>Subtotal: ${cartTotal.toFixed(2)}</p>
         <p>Taxes: ${(cartTotal * 0.095).toFixed(2)}</p>
         <p>Shipping: ${(7.0).toFixed(2)}</p>
-        <p>Total: </p>
+        <p>Total: ${(cartTotal + cartTotal * 0.095 + 7.0).toFixed(2)}</p>
       </div>
     </div>
   );

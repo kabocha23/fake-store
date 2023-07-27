@@ -49,10 +49,10 @@ const CartModal: FC<CartModalProps> = ({
                     <p id="cart-product-name">
                       {productsData[product.productId].title}
                     </p>
+                    <p id="cart-product-qty"> Qty: {product.productQty}</p>
                     <p id="cart-product-price">
                       ${productsData[product.productId].price.toFixed(2)}
                     </p>
-                    <p id="cart-product-qty"> Qty: {product.productQty}</p>
                     <div id="cart-product-delete">
                       <img
                         src={deleteIcon}
@@ -66,7 +66,7 @@ const CartModal: FC<CartModalProps> = ({
             </div>
             <div id="cart-product-subtotal">
               <p>
-                Total: <span>${cartTotal}</span>
+                Total: <span>${cartTotal.toFixed(2)}</span>
               </p>
             </div>
             <div className="cart-checkout">

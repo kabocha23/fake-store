@@ -6,12 +6,12 @@
     margin-right: auto;
 }
 .checkout-back > button {
-        all: unset;
-        cursor: pointer;
-        text-decoration: none;
-        font-size: 1rem;
-        font-weight: 500;
-        border: none;
+    all: unset;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
 }
 .checkout-back>button:hover {
     color: rgb(56, 165, 255);

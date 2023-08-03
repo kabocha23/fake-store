@@ -1,8 +1,8 @@
 .productpage-container {
     display: flex;
     flex-direction: column;
-    height: 100%;
     max-width: 1281px;
+    padding-top: 4rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -18,14 +18,23 @@
 .productpage-back>button:hover {
     color: rgb(56, 165, 255);
 }
+hr {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: 100%;
+    height: 1px;
+}
 
 .productpage-main {
     display: flex;
     flex-direction: row;
+    height: 100%;
 }
-
+.productpage-image {
+    height: 100%;
+}
 .productpage-image img {
-    height: 30rem;
+    width: 30rem;
     margin-left: auto;
     margin-right: auto;
 }

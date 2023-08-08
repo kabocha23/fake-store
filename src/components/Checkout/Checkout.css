@@ -2,6 +2,7 @@
     display: flex;
     flex-flow: column;
     max-width: 1281px;
+    padding-top: 4rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -27,12 +28,28 @@ hr {
     margin-bottom: 5rem;
     text-align: center;
 }
+
 .checkout-product {
     display: flex;
     flex-flow: row;
+    margin-bottom: 2rem;
 }
 #checkout-img {
-    width: 10rem;
+    height: 10rem;
+}
+.checkout-details {
+    display: flex;
+    flex-flow: row;
+    width: 80%;
+    height: 1.75rem;
+    text-align: right;
+    align-items: end;
+    justify-content: space-evenly;
+    margin-left: auto;
+}
+#checkout-name {
+    width: 75%;
+    text-align: left;
 }
 .checkout-details > input {
     width: 2rem;

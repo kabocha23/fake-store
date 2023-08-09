@@ -56,40 +56,43 @@ const Checkout: FC<CheckoutProps> = ({
         </button>
       </div>
       <hr></hr>
-      {cart.length === 0 ? (
-        <p id="checkout-no-items-msg">
-          You do not have any items in your cart!
-        </p>
-      ) : (
-        cart.map((product) => {
-          return (
-            <div key={product.productId} className="checkout-product">
-              <img
-                id="checkout-img"
-                src={productsData[product.productId].image}
-                alt={productsData[product.productId].title}
-              ></img>
-              <div className="checkout-details">
-                <p id="checkout-name">
-                  {productsData[product.productId].title}
-                </p>
-                <p id="checkout-price">
-                  ${productsData[product.productId].price.toFixed(2)}
-                </p>
-                <label htmlFor="checkout-qty">Qty: </label>
-                <input id="checkout-qty" value={product.productQty}></input>
-                <div id="checkout-delete">
-                  <img
-                    src={deleteIcon}
-                    onClick={() => onRemoveFromCart}
-                    alt="delete"
-                  ></img>
+      <div className="checkout-cart-items">
+        {cart.length === 0 ? (
+          <p id="checkout-no-items-msg">
+            You do not have any items in your cart!
+          </p>
+        ) : (
+          cart.map((product) => {
+            return (
+              <div key={product.productId} className="checkout-product">
+                <img
+                  id="checkout-img"
+                  src={productsData[product.productId].image}
+                  alt={productsData[product.productId].title}
+                ></img>
+                <div className="checkout-details">
+                  <p id="checkout-name">
+                    {productsData[product.productId].title}
+                  </p>
+                  <label htmlFor="checkout-qty">Qty: </label>
+                  <input id="checkout-qty" value={product.productQty}></input>
+                  <div id="checkout-delete">
+                    <img
+                      src={deleteIcon}
+                      onClick={() => onRemoveFromCart}
+                      alt="delete"
+                    ></img>
+                  </div>
+                  <p id="checkout-price">
+                    ${productsData[product.productId].price.toFixed(2)}
+                  </p>
                 </div>
               </div>
-            </div>
-          );
-        })
-      )}
+            );
+          })
+        )}
+      </div>
+
       <div className="checkout-totals">
         <p>Subtotal: ${cartTotal.toFixed(2)}</p>
         <p>Taxes: ${(cartTotal * 0.095).toFixed(2)}</p>

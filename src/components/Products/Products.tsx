@@ -64,7 +64,7 @@ const Products: FC<ProductsProps> = ({
           <select
             name="sortSelect"
             value={sortBy}
-            id="sortSelect"
+            id="sortSelector"
             onChange={(e) => handleSort(e, productsData)}
           >
             <option value="Featured">Featured</option>
